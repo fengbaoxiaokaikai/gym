@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gym.mapper.CouponMapper">
+
+    <select id="findAll" resultType="coupon">
+        SELECT *
+        FROM coupon
+        ORDER BY coupon_id DESC
+    </select>
+
+    <insert id="insertCoupon" parameterType="coupon" useGeneratedKeys="true" keyProperty="couponId">
+        INSERT INTO coupon (coupon_code, coupon_name, coupon_type, discount_amount,
+                            minimum_amount, start_time, end_time, coupon_status,
+                            coupon_stock, coupon_message)
+        VALUES (#{couponCode}, #{couponName}, #{couponType}, #{discountAmount},
+                #{minimumAmount}, #{startTime}, #{endTime}, #{couponStatus},
+                #{couponStock}, #{couponMessage})
+    </insert>
+
+    <update id="updateCouponByCouponId" parameterType="coupon">
+        UPDATE coupon
+        SET coupon_code     = #{couponCode},
+            coupon_name     = #{couponName},
+            coupon_type     = #{couponType},
+            discount_amount = #{discountAmount},
+            minimum_amount  = #{minimumAmount},
+            start_time      = #{startTime},
+            end_time        = #{endTime},
+            coupon_status   = #{couponStatus},
+            coupon_stock    = #{couponStock},
+            coupon_message  = #{couponMessage}
+        WHERE coupon_id = #{couponId}
+    </update>
+
+    <delete id="deleteByCouponId" parameterType="java.lang.Integer">
+        DELETE
+        FROM coupon
+        WHERE coupon_id = #{couponId}
+    </delete>
+
+    <select id="selectByCouponId" parameterType="java.lang.Integer" resultType="coupon">
+        SELECT *
+        FROM coupon
+        WHERE coupon_id = #{couponId}
+    </select>
+
+    <select id="selectTotalCount" resultType="java.lang.Integer">
+        SELECT count(*)
+        FROM coupon
+    </select>
+
+</mapper>
