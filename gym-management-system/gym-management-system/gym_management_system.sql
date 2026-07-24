@@ -94,6 +94,8 @@ CREATE TABLE `coupon`  (
   `coupon_status` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '启用' COMMENT '状态',
   `coupon_stock` int NULL DEFAULT 0 COMMENT '库存数量',
   `coupon_message` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注信息',
+  `status` int NULL DEFAULT 0 COMMENT '优惠券使用状态: 0-未使用, 1-已使用, 2-已过期, 3-已作废',
+  `user_id` int NULL DEFAULT NULL COMMENT '关联用户ID',
   PRIMARY KEY (`coupon_id`) USING BTREE,
   UNIQUE INDEX `uk_coupon_code`(`coupon_code`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;

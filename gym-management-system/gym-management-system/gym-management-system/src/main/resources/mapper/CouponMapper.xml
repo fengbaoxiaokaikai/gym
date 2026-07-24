@@ -13,10 +13,10 @@
     <insert id="insertCoupon" parameterType="coupon" useGeneratedKeys="true" keyProperty="couponId">
         INSERT INTO coupon (coupon_code, coupon_name, coupon_type, discount_amount,
                             minimum_amount, start_time, end_time, coupon_status,
-                            coupon_stock, coupon_message)
+                            coupon_stock, coupon_message, status, user_id)
         VALUES (#{couponCode}, #{couponName}, #{couponType}, #{discountAmount},
                 #{minimumAmount}, #{startTime}, #{endTime}, #{couponStatus},
-                #{couponStock}, #{couponMessage})
+                #{couponStock}, #{couponMessage}, #{status}, #{userId})
     </insert>
 
     <update id="updateCouponByCouponId" parameterType="coupon">
@@ -30,7 +30,9 @@
             end_time        = #{endTime},
             coupon_status   = #{couponStatus},
             coupon_stock    = #{couponStock},
-            coupon_message  = #{couponMessage}
+            coupon_message  = #{couponMessage},
+            status          = #{status},
+            user_id         = #{userId}
         WHERE coupon_id = #{couponId}
     </update>
 
